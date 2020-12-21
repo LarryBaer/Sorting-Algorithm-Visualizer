@@ -1,19 +1,23 @@
 var mainCanvas = document.getElementById("main_canvas");
 var bubbleButton = document.getElementById("bubble_button");
+var generateLinesBtn = document.getElementById("generate_lines");
 var ctx = mainCanvas.getContext("2d");
 var linesArr = [];
 var swapped;
-//Creates array of different line heights
-(function createLines(){
-    for(let i = 0; i < 100; i++){
-        linesArr.push(randIntFromInterval(10.0, 400.0));
-    }
-})();
 
 //Gets random integer to create line heights
 function randIntFromInterval(min, max){
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
+//Creates array of different line heights
+function createLines(){
+    var tempArr = [];
+    for(let i = 0; i < 100; i++){
+        tempArr.push(randIntFromInterval(10.0, 400.0));
+    }
+    linesArr = tempArr.slice(0);
+};
 
 //Draws lines on canvas
 function drawLines(arr){
@@ -27,7 +31,6 @@ function drawLines(arr){
         ctx.strokeStyle = '#ff0000';
         ctx.stroke();
         lineDistance += 10;
-        console.log(arr[i]);
     }
 };
 
@@ -50,13 +53,18 @@ bubbleButton.addEventListener("click", function(){
         bubbleSort(linesArr);
     }while(swapped);
 
-    console.log("BUBBLE SORTED");
     drawLines(linesArr);
 
 });
 
+generateLinesBtn.addEventListener("click", function(){  
+    createLines();
+    drawLines(linesArr);
+});
 
+createLines();
 drawLines(linesArr);
+
 
 
 
