@@ -1,0 +1,8 @@
+
+.canvas_container{
+    height:100vh;
+}
+
+#main_canvas{
+    background-color:lightgray;
+}
