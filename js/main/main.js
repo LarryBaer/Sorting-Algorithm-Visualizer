@@ -4,7 +4,10 @@ var generateLinesBtn = document.getElementById("generate_lines");
 var ctx = mainCanvas.getContext("2d");
 var linesArr = [];
 var swapped;
+let swappedIndex1 = undefined; 
+let swappedIndex2 = undefined;  
 
+var lineDistance;
 //Gets random integer to create line heights
 function randIntFromInterval(min, max){
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -27,54 +30,30 @@ function drawLines(arr){
         ctx.beginPath();
         ctx.lineWidth = 10;
         ctx.moveTo(lineDistance,5);
-		ctx.lineTo(lineDistance, arr[i]);
-		ctx.strokeStyle = '#0000ff';
+        ctx.lineTo(lineDistance, arr[i]);
+        if(i === swappedIndex1 || i === swappedIndex2) { 
+              ctx.strokeStyle = '#00ff00';               
+        } else {                                         
+              ctx.strokeStyle = '#0000ff';               
+        }
         ctx.stroke();
         lineDistance += 20;
     }
 };
 
+//----------SORT----------
+//the reason it is skipping over things is bc ur setting the green ones only to things that are being swapped
 
-//--------------------Sort--------------------
-//Bubble Sort
-  
-function* bubbleSort(arr){
-do{
-	swapped = false;
-    for(let i = 0; i < arr.length - 1; i++){
-            if(arr[i] > arr[i + 1]){
-                let temp = arr[i];
-                arr[i] = arr[i + 1];
-                arr[i + 1] = temp;
-				swapped = true;
-				yield swapped;
-			}   
-	}
-	}while(swapped);
- }
-
-bubbleButton.addEventListener("click", function(){
-	var sort = bubbleSort(linesArr);
-
-	function anim(){
-	  requestAnimationFrame(anim);
-	  drawLines(linesArr);
-	}
-	setInterval(function(){	sort.next(); }, 60);
-	anim();
-
-});
 
 generateLinesBtn.addEventListener("click", function(){  
     createLines();
      drawLines(linesArr);
 });
 createLines();
- drawLines(linesArr);
+drawLines(linesArr);
 
 
 //Sort manually
 // var a;
 // var b;
 // linesArr = linesArr.sort((a, b) => a - b);
-
