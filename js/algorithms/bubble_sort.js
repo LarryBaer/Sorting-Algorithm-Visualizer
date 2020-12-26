@@ -1,3 +1,4 @@
+var comparison_count_txt = document.getElementById("comparison_count_text");
 let color = undefined;
 
 //bubble sort algorithm
@@ -5,6 +6,8 @@ function* bubbleSort(arr) {
   do {
     swapped = false;
     for (let i = 0; i < arr.length - 1; i++) {
+      comparisonCount++;
+      comparison_count_txt.innerHTML = comparisonCount;
       color = "#00ff00";
       if (arr[i] > arr[i + 1]) {
         let temp = arr[i];
@@ -30,6 +33,6 @@ bubbleButton.addEventListener("click", function() {
   }
   setInterval(function() {
     sort.next();
-  }, 500);
+  }, speed);
   anim();
 });
