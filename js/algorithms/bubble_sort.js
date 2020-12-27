@@ -1,6 +1,5 @@
-var comparison_count_txt = document.getElementById("comparison_count_text");
 let color = undefined;
-
+var comparison_count_txt = document.getElementById("comparison_count_text");
 //bubble sort algorithm
 function* bubbleSort(arr) {
   do {
@@ -33,6 +32,6 @@ bubbleButton.addEventListener("click", function() {
   }
   setInterval(function() {
     sort.next();
-  }, 50);
+  }, sortSpeed);
   anim();
 });

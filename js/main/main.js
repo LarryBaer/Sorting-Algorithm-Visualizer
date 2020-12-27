@@ -1,6 +1,8 @@
 var mainCanvas = document.getElementById("main_canvas");
 var bubbleButton = document.getElementById("bubble_button");
 var generateLinesBtn = document.getElementById("generate_lines");
+var canvasHeight = document.getElementById("main_canvas").offsetHeight;
+var navbarHeight = document.getElementById("main_nav").offsetHeight;
 var ctx = mainCanvas.getContext("2d");
 var linesArr = [];
 var swapped;
@@ -8,10 +10,13 @@ let swappedIndex1 = undefined;
 let swappedIndex2 = undefined;
 var lineDistance;
 var comparisonCount = 0;
-var speed = document.getElementById("sort_speed_change").value;
-var canvasHeight = document.getElementById("main_canvas").offsetHeight;
-var navbarHeight = document.getElementById("main_nav").offsetHeight;
 var maxLineHeight = canvasHeight - navbarHeight;
+var sortSpeed;
+
+function changeSortSpeed(){
+  sortSpeed = document.getElementById("change_sort_speed").value;
+}
+
 
 //Gets random integer to create line heights
 function randIntFromInterval(min, max) {
