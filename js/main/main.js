@@ -11,7 +11,7 @@ let swappedIndex2 = undefined;
 var lineDistance;
 var comparisonCount = 0;
 var maxLineHeight = canvasHeight - navbarHeight;
-var sortSpeed;
+var sortSpeed = 250;
 
 function changeSortSpeed(){
   sortSpeed = document.getElementById("change_sort_speed").value;
@@ -60,7 +60,7 @@ generateLinesBtn.addEventListener("click", function() {
 
 createLines();
 drawLines(linesArr);
-console.log(linesArr);
+
 //Sort manually
 // var a;
 // var b;

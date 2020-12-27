@@ -1,10 +1,12 @@
 let color = undefined;
 var comparison_count_txt = document.getElementById("comparison_count_text");
-//bubble sort algorithm
+//Bubble sort algorithm
 function* bubbleSort(arr) {
+  var sortLength = arr.length - 1;
+
   do {
     swapped = false;
-    for (let i = 0; i < arr.length - 1; i++) {
+    for (let i = 0; i < sortLength; i++) {
       comparisonCount++;
       comparison_count_txt.innerHTML = comparisonCount;
       color = "#00ff00";
@@ -15,10 +17,12 @@ function* bubbleSort(arr) {
         swapped = true;
         color = "#FF0000";
       }
+
       swappedIndex1 = i;
       swappedIndex2 = i + 1;
       yield;
     }
+    sortLength--;
   } while (swapped);
 }
 
