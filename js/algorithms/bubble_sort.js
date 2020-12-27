@@ -9,7 +9,7 @@ function* bubbleSort(arr) {
       comparisonCount++;
       comparison_count_txt.innerHTML = comparisonCount;
       color = "#00ff00";
-      if (arr[i] > arr[i + 1]) {
+      if (arr[i] < arr[i + 1]) {
         let temp = arr[i];
         arr[i] = arr[i + 1];
         arr[i + 1] = temp;
@@ -26,13 +26,13 @@ function* bubbleSort(arr) {
 //Starts bubble sort animation
 bubbleButton.addEventListener("click", function() {
   var sort = bubbleSort(linesArr);
-
+  comparisonCount = 0;
   function anim() {
     requestAnimationFrame(anim);
     drawLines(linesArr);
   }
   setInterval(function() {
     sort.next();
-  }, speed);
+  }, 50);
   anim();
 });

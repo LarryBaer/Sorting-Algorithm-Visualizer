@@ -12,8 +12,6 @@ var speed = document.getElementById("sort_speed_change").value;
 var canvasHeight = document.getElementById("main_canvas").offsetHeight;
 var navbarHeight = document.getElementById("main_nav").offsetHeight;
 var maxLineHeight = canvasHeight - navbarHeight;
-console.log(maxLineHeight);
-
 
 //Gets random integer to create line heights
 function randIntFromInterval(min, max) {
@@ -24,7 +22,7 @@ function randIntFromInterval(min, max) {
 function createLines() {
   var tempArr = [];
   for (let i = 0; i < 50; i++) {
-    tempArr.push(randIntFromInterval(10.0, 300.00));
+    tempArr.push(randIntFromInterval(300.00, 10.00));
   }
   linesArr = tempArr.slice(0);
 }
@@ -38,7 +36,7 @@ function drawLines(arr) {
     ctx.beginPath();
     ctx.lineWidth = 10;
     ctx.moveTo(lineDistance, arr[i]);
-    ctx.lineTo(lineDistance, mainCanvas.height);
+    ctx.lineTo(lineDistance,  mainCanvas.height);
     if (i === swappedIndex1 || i === swappedIndex2) {
       ctx.strokeStyle = color;
     } else {
