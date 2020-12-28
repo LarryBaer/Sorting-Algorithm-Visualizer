@@ -1,5 +1,4 @@
 var mainCanvas = document.getElementById("main_canvas");
-var bubbleButton = document.getElementById("bubble_button");
 var generateLinesBtn = document.getElementById("generate_lines");
 var canvasHeight = document.getElementById("main_canvas").offsetHeight;
 var navbarHeight = document.getElementById("main_nav").offsetHeight;
@@ -12,11 +11,15 @@ var lineDistance;
 var comparisonCount = 0;
 var maxLineHeight = canvasHeight - navbarHeight;
 var sortSpeed = 250;
+var amountOfLines = 50;
 
 function changeSortSpeed(){
   sortSpeed = document.getElementById("change_sort_speed").value;
 }
 
+function changeLineAmount(){
+  amountOfLines = document.getElementById("change_line_amount");
+}
 
 //Gets random integer to create line heights
 function randIntFromInterval(min, max) {
@@ -26,7 +29,7 @@ function randIntFromInterval(min, max) {
 //Creates array of different line heights
 function createLines() {
   var tempArr = [];
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < amountOfLines; i++) {
     tempArr.push(randIntFromInterval(300.00, 10.00));
   }
   linesArr = tempArr.slice(0);
@@ -57,6 +60,12 @@ generateLinesBtn.addEventListener("click", function() {
   createLines();
   drawLines(linesArr);
 });
+
+function swap(arr, leftIndex, rightIndex){
+  var temp = arr[leftIndex];
+  arr[leftIndex] = arr[rightIndex];
+  arr[rightIndex] = temp;
+}
 
 createLines();
 drawLines(linesArr);

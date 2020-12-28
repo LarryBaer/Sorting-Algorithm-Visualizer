@@ -11,12 +11,14 @@
             <h1 class = "main_title">Sorting Visualizer</h1>
             <button type="button" class="btn btn-primary btn-large" id="generate_lines">Generate New Lines</button>
             <button type="button" class="btn btn-primary btn-large" id="bubble_button">Bubble Sort</button>
-            <button type="button" class="btn btn-primary btn-large">Quick Sort</button>
+            <button type="button" class="btn btn-primary btn-large" id="quick_button">Quick Sort</button>
             <button type="button" class="btn btn-primary btn-large">Merge Sort</button>
             <button type="button" class="btn btn-primary btn-large">Insertion Sort</button>
         </nav>
         <label>Speed</label>
         <input type="range" min="10" max="500" step="10" id="change_sort_speed" oninput="changeSortSpeed()">
+        <label>Amount of Lines</label>
+        <input type="range" min="1" max="100" step="10" id="change_line_amount" oninput="changeLineAmount()">
         <div class="comparisons_container">
             <h6>Comparisons:&nbsp</h6>
             <h6 id="comparison_count_text">0</h6>
@@ -28,5 +30,6 @@
 </canvas>
 <script src="../js/main/main.js"></script>
 <script src="../js/algorithms/bubble_sort.js"></script>
+<script src="../js/algorithms/quick_sort.js"></script>
     </body>
 </html>

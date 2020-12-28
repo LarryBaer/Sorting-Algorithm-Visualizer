@@ -1,5 +1,7 @@
 let color = undefined;
+var bubbleButton = document.getElementById("bubble_button");
 var comparison_count_txt = document.getElementById("comparison_count_text");
+
 //Bubble sort algorithm
 function* bubbleSort(arr) {
   var sortLength = arr.length - 1;
@@ -17,7 +19,6 @@ function* bubbleSort(arr) {
         swapped = true;
         color = "#FF0000";
       }
-
       swappedIndex1 = i;
       swappedIndex2 = i + 1;
       yield;
@@ -26,7 +27,7 @@ function* bubbleSort(arr) {
   } while (swapped);
 }
 
-//Starts bubble sort animation
+//When button is pressed, start bubble sort animation
 bubbleButton.addEventListener("click", function() {
   var sort = bubbleSort(linesArr);
   comparisonCount = 0;
@@ -35,7 +36,7 @@ bubbleButton.addEventListener("click", function() {
     drawLines(linesArr);
   }
   setInterval(function() {
-    sort.next();
+     sort.next();
   }, sortSpeed);
   anim();
 });
