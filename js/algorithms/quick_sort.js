@@ -1,44 +1,33 @@
 var quickSortButton = document.getElementById("quick_button");
 
-function quickSort(arr, left, right) {
-    var index;
-    if (arr.length > 1) {
-        index = seperate(arr, left, right); 
-        if (left < index - 1) { 
-            quickSort(arr, left, index - 1);
-        }
-        if (index < right) { 
-            quickSort(arr, index, right);
-        }
+function quickSort(arr, start, end) {
+    if(start >= end){
+        return;
     }
-    return arr;
+
+    let index = seperate(arr, start, end);
+    quickSort(arr, start, index - 1);
+    quickSort(arr, index + 1, end);
 }
 
-function seperate(arr, left, right) {
-    var pivot   = arr[[Math.floor((right + left) / 2)]];
-    var i = left; 
-    var j = right;
+function seperate(arr, start, end) {
+    let pivotIndex = start;
+    let pivotValue = arr[end];
 
-    while (i <= j) {
-        while (arr[i] < pivot) {
-            i++;
-        }
-
-        while (arr[j] > pivot) {
-            j--;
-        }
-
-        if (i <= j) {
-            swap(arr, i, j); 
-            i++;
-            j--;
+    for(let i = start; i < end; i++){
+        if(arr[i] < pivotValue){
+            swap(arr, i, pivotIndex);
+            pivotIndex++;
         }
     }
-    return i;
+
+    swap(arr, pivotIndex, end);
+    return pivotIndex;
 }
 
-var sort2 = quickSort(linesArr, 0, linesArr.length - 1);
-console.log(sort2);
+// quickSort(linesArr, 0, linesArr.length - 1);
+// console.log(linesArr);
+
 //When button is pressed, start quick sort animation
 quickSortButton.addEventListener("click", function() {
         console.log("quick sort button clicked");
@@ -48,8 +37,8 @@ quickSortButton.addEventListener("click", function() {
             requestAnimationFrame(anim);
             drawLines(linesArr);
         }
-        setInterval(function() {
-           sort.next();
-        }, sortSpeed);
+        // setInterval(function() {
+        //    sort.next();
+        // }, sortSpeed);
         anim();
 });
