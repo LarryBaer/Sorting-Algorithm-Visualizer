@@ -1,15 +1,11 @@
 var mainCanvas = document.getElementById("main_canvas");
 var generateLinesBtn = document.getElementById("generate_lines");
-var canvasHeight = document.getElementById("main_canvas").offsetHeight;
-var navbarHeight = document.getElementById("main_nav").offsetHeight;
 var ctx = mainCanvas.getContext("2d");
 var linesArr = [];
-var swapped;
 let swappedIndex1 = undefined;
 let swappedIndex2 = undefined;
 var lineDistance;
 var comparisonCount = 0;
-var maxLineHeight = canvasHeight - navbarHeight;
 var sortSpeed = 250;
 var amountOfLines = 50;
 
