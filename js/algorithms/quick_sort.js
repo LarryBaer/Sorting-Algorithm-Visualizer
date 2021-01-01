@@ -1,3 +1,5 @@
+//https://en.wikipedia.org/wiki/Quicksort
+
 var quickSortButton = document.getElementById("quick_button");
 
 //Main quicksort function
@@ -36,17 +38,16 @@ function quickSort(arr, start, end) {
 
 // //When button is pressed, start quick sort animation
 quickSortButton.addEventListener("click", function() {
-//         console.log("quick sort button clicked");
-//         var sort = quickSort(linesArr, 0, linesArr.length - 1);
-//         comparisonCount = 0;
-//         function anim() {
-//             requestAnimationFrame(anim);
-//             drawLines(linesArr);
-//         }
-//         // setInterval(function() {
-//         //    sort.next();
-//         // }, sortSpeed);
-//         anim();
+        var sort = quickSort(linesArr, 0, linesArr.length - 1);
+        comparisonCount = 0;
+        function anim() {
+            requestAnimationFrame(anim);
+            drawLines(linesArr);
+        }
+        // setInterval(function() {
+        //    sort.next();
+        // }, sortSpeed);
+        anim();
     console.log(linesArr);
     quickSort(linesArr, 0, linesArr.length - 1);
     console.log(linesArr);
