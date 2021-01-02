@@ -4,17 +4,17 @@ var ctx = mainCanvas.getContext("2d");
 var linesArr = [];
 let swappedIndex1 = undefined;
 let swappedIndex2 = undefined;
+let swappedIndex3 = undefined;
 var lineDistance;
 var comparisonCount = 0;
 var sortSpeed = 250;
 var amountOfLines = 50;
+var linesThatAreGood = 0;
 
+
+var testArr = [];
 function changeSortSpeed(){
   sortSpeed = document.getElementById("change_sort_speed").value;
-}
-
-function changeLineAmount(){
-  amountOfLines = document.getElementById("change_line_amount");
 }
 
 //Gets random integer to create line heights
@@ -43,6 +43,8 @@ function drawLines(arr) {
     ctx.lineTo(lineDistance,  mainCanvas.height);
     if (i === swappedIndex1 || i === swappedIndex2) {
       ctx.strokeStyle = color;
+    }else if(linesThatAreGood){
+      ctx.strokeStyle = "#00ff00";
     } else {
       ctx.strokeStyle = "#45b6fe";
     }
