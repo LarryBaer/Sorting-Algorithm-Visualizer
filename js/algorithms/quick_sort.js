@@ -3,40 +3,51 @@
 var quickSortButton = document.getElementById("quick_button");
 
 //Main quicksort function
-function quickSort(arr, start, end) {
-    if (start < end) {
-      var index = partition(arr, start, end);
-      quickSort(arr, start, index);
-      quickSort(arr, index + 1, end);
-    }else{
-        return;
-    }
-  }
-  
-  //Splits array using the hoare partition scheme
-  function partition(arr, left, right) {
-    var pivot = arr[Math.floor((left + right) / 2)];
-    var i = left - 1;
-    var j = right + 1;
-
-    while (true) {
-      do{
-        i++;
-      }while(arr[i] < pivot);
-  
-      do{
-        j--;
-      }while(arr[j] > pivot);
-  
-      if (i >= j) {
-        return j;
-      }
-      swap(arr, i, j);
-    }
-
+async function quickSort(arr, start, end) {
+  if (start >= end) {
+    return;
   }
 
-// //When button is pressed, start quick sort animation
+  let index = await partition(arr, start, end);
+
+  await Promise.all([
+    quickSort(arr, start, index - 1), 
+    quickSort(arr, index, end)]
+  );
+}
+
+//Splits array using Hoare's partition scheme
+async function partition(arr, start, end) {
+
+  let pivot = arr[Math.floor((start + end) / 2)];
+
+  while (start <= end) {
+    while (arr[start] < pivot) {
+      start++
+    }
+
+    while (arr[end] > pivot) {
+      end--
+    }
+
+    if (start <= end) {
+      await quickSortSwap(arr, start, end);
+      start++
+      end--
+    }
+  }
+
+  return start;
+}
+
+async function quickSortSwap(arr, a, b) {
+  await sleep(120);
+  let temp = arr[a];
+  arr[a] = arr[b];
+  arr[b] = temp;
+}
+
+//When button is pressed, start quick sort animation
 quickSortButton.addEventListener("click", function() {
         var sort = quickSort(linesArr, 0, linesArr.length - 1);
         comparisonCount = 0;
@@ -44,11 +55,5 @@ quickSortButton.addEventListener("click", function() {
             requestAnimationFrame(anim);
             drawLines(linesArr);
         }
-        // setInterval(function() {
-        //    sort.next();
-        // }, sortSpeed);
         anim();
-    console.log(linesArr);
-    quickSort(linesArr, 0, linesArr.length - 1);
-    console.log(linesArr);
 });

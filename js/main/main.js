@@ -11,8 +11,6 @@ var sortSpeed = 250;
 var amountOfLines = 50;
 var linesThatAreGood = 0;
 
-
-var testArr = [];
 function changeSortSpeed(){
   sortSpeed = document.getElementById("change_sort_speed").value;
 }
@@ -51,6 +49,8 @@ function drawLines(arr) {
     ctx.stroke();
     lineDistance += 20;
   }
+
+  
 }
 
 //Creates new lines with button click
@@ -59,10 +59,15 @@ generateLinesBtn.addEventListener("click", function() {
   drawLines(linesArr);
 });
 
+//Swaps 2 values in an array
 function swap(arr, leftIndex, rightIndex){
   var temp = arr[leftIndex];
   arr[leftIndex] = arr[rightIndex];
   arr[rightIndex] = temp;
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 createLines();
