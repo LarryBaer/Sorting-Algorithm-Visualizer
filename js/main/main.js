@@ -32,7 +32,6 @@ function createLines() {
 // Draws lines on canvas
 function drawLines(arr) {
   ctx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
-
   var lineDistance = 10;
   for (let i = 0; i < arr.length; i++) {
     ctx.beginPath();
@@ -41,15 +40,12 @@ function drawLines(arr) {
     ctx.lineTo(lineDistance,  mainCanvas.height);
     if (i === swappedIndex1 || i === swappedIndex2) {
       ctx.strokeStyle = color;
-    }else if(linesThatAreGood){
-      ctx.strokeStyle = "#00ff00";
-    } else {
+    }else {
       ctx.strokeStyle = "#45b6fe";
     }
     ctx.stroke();
     lineDistance += 20;
   }
-
   
 }
 
@@ -77,3 +73,52 @@ drawLines(linesArr);
 // var a;
 // var b;
 // linesArr = linesArr.sort((a, b) => a - b);
+
+
+//----------New drawing function in the works----------
+
+var colors = [];
+
+function drawLines2(arr, colors){
+  ctx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+  var lineDistance = 10;
+  ctx.beginPath();
+  ctx.moveTo(lineDistance, arr[i]);
+  ctx.lineTo(lineDistance,  mainCanvas.height);
+  ctx.stroke();
+
+  for(let i = 0; i < arr.length; i++){
+    //ctx.fillStyle = colors[i];
+    // if (arr[i] >= 0) {
+    //   ctx.fillRect()
+    // } else {
+    //   ctx.fillRect()
+    // }
+    // lineDistance += 20;
+
+  }
+}
+
+function animateArray(arr, sortSpeed){
+  for(let i = 0; i < arr.length; i++){
+    arr.push(arr[i]);
+    colors.push("#45b6fe");
+  }
+
+  drawLines2(arr, colors);
+
+  //you left off here <<<
+
+  //step through each iteration at sort speed
+  //window.setInterval(function(){
+
+  //if there are no actions, draw original array
+
+  //otherwise, grab an action from the array and the iteration count
+
+  //depending on action type, assign corresponding colors
+
+  //then draw the array. once the array is drawn, reset the colors in the next frame
+
+ // }, sortSpeed)
+}
