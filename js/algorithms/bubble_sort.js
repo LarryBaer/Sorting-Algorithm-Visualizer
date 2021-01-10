@@ -32,8 +32,9 @@ bubbleButton.addEventListener("click", function() {
   var sort = bubbleSort(linesArr);
   comparisonCount = 0;
   function anim() {
+    colors = ["#45b6fe"];
     requestAnimationFrame(anim);
-    drawLines(linesArr);
+    drawLines(linesArr, colors);
   }
   setInterval(function() {
      sort.next();
