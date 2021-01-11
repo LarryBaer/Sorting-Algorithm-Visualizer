@@ -19,8 +19,6 @@ function* bubbleSort(arr) {
         swapped = true;
         color = "#FF0000";
       }
-      swappedIndex1 = i;
-      swappedIndex2 = i + 1;
       yield;
     }
     sortLength--;

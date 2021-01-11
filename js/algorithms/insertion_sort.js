@@ -3,16 +3,9 @@ var insertionSortButton = document.getElementById("insertion_button");
 function* insertionSort(arr){
 
     for(let i = 1; i < arr.length; i++){
-        color = "#00ff00";
-        swappedIndex1 = i;
         yield;
-        
         for(let j = i; j > 0; j--){
-      
-            color = "#FF0000";
-            swappedIndex2 = j;
             yield;
-            
             if(arr[j - 1] < arr[j]){  
                 swap(arr, j, j - 1);
                 
@@ -31,7 +24,8 @@ insertionSortButton.addEventListener("click", function() {
     comparisonCount = 0;
     function anim() {
         requestAnimationFrame(anim);
-        drawLines(linesArr);
+        colors = ["#45b6fe"];
+        drawLines(linesArr, colors);
     }
      setInterval(function() {
         sort.next();

@@ -2,14 +2,9 @@ var mainCanvas = document.getElementById("main_canvas");
 var generateLinesBtn = document.getElementById("generate_lines");
 var ctx = mainCanvas.getContext("2d");
 var linesArr = [];
-let swappedIndex1 = undefined;
-let swappedIndex2 = undefined;
-let swappedIndex3 = undefined;
-var lineDistance;
 var comparisonCount = 0;
 var sortSpeed = 250;
-var amountOfLines = 50;
-var linesThatAreGood = 0;
+var lineAmount = 50;
 
 //Changes the animation speed when slider is moved
 function changeSortSpeed(){
@@ -24,7 +19,7 @@ function randIntFromInterval(min, max) {
 //Creates array of different line heights
 function createLines() {
   var tempArr = [];
-  for (let i = 0; i < amountOfLines; i++) {
+  for (let i = 0; i < lineAmount; i++) {
     tempArr.push(randIntFromInterval(300.00, 10.00));
   }
   linesArr = tempArr.slice(0);
@@ -65,6 +60,7 @@ function drawLines(arr, colors) {
     lineDistance += spacing + lineWidth;
   }
 }
+
 
 colors = ["#45b6fe"];
 createLines();

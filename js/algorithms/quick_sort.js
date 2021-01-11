@@ -19,20 +19,14 @@ async function quickSort(arr, start, end) {
 //Splits array using Hoare's partition scheme
 async function partition(arr, start, end) {
 
-  //color everything that is in between start and end here
-
   let pivot = arr[Math.floor((start + end) / 2)];
 
   while (start <= end) {
     while (arr[start] < pivot) {
-      color = "#00ff00";
-      swappedIndex1 = start;
       start++
     }
 
     while (arr[end] > pivot) {
-      color = "#00ff00";
-      swappedIndex1 = end;
       end--
     }
 
@@ -60,7 +54,8 @@ quickSortButton.addEventListener("click", function() {
         comparisonCount = 0;
         function anim() {
             requestAnimationFrame(anim);
-            drawLines(linesArr);
+            colors = ["#45b6fe"];
+            drawLines(linesArr, colors);
         }
         anim();
 });
