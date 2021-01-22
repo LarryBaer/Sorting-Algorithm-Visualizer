@@ -11,11 +11,16 @@ const BLUE_COLOR = "#45b6fe";
 const GREEN_COLOR = "#00ff00";
 const GOLD_COLOR = "#FFD700";
 
+// Gets random integer to create line heights
+function randIntFromInterval(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 // Creates array of different line heights
 function createLines() {
   var tempArr = [];
   for (let i = 0; i < lineAmount; i++) {
-    tempArr.push(randIntFromInterval(300.00, 10.00));
+    tempArr.push(randIntFromInterval(315.00, 0.00));
   }
   linesArr = tempArr.slice(0);
 }
@@ -99,13 +104,6 @@ const actionsMap = {
 function changeSortSpeed(){
   sortSpeed = document.getElementById("change_sort_speed").value;
 }
-
-// Gets random integer to create line heights
-function randIntFromInterval(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-
 
 // Creates new lines with button click
 generateLinesBtn.addEventListener("click", function() {
