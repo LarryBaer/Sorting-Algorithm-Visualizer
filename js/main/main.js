@@ -75,7 +75,9 @@ const lines = randomArray.map((v) => {
 });
 
 // Draws all lines in array
-const drawAll = () => lines.forEach((m) => m.draw());
+function drawAll(){
+  lines.forEach((line) => line.draw());
+}
 drawAll()
 
 // Actions that determin what to set values
@@ -83,21 +85,26 @@ const ACTIONS = {
   SORT: "SORT",
   COMPARE: "COMPARE",
   SWAP: "SWAP",
+  PIVOT: "PIVOT"
 };
 
 const actionsMap = {
   [ACTIONS.SORT]: (action, members) => members[action.data].sorted(),
   [ACTIONS.SWAP]: (action, members) => {
     const [i, j] = action.data;
-    let tmp = members[i].getValue();
+    let temp = members[i].getValue();
     members[i].setValue(members[j].getValue(), RED_COLOR);
-    members[j].setValue(tmp, RED_COLOR);
+    members[j].setValue(temp, RED_COLOR);
   },
   [ACTIONS.COMPARE]: (action, members) => {
     const [i, j] = action.data;
     members[i].setColor(GREEN_COLOR);
     members[j].setColor(GREEN_COLOR);
   },
+  [ACTIONS.PIVOT]:(action, members) => {
+    const pivot = action.data;
+    members[pivot].setColor(GOLD_COLOR);
+  }
 };
 
 // Changes the animation speed when slider is moved
@@ -113,8 +120,8 @@ generateLinesBtn.addEventListener("click", function() {
 });
 
 // Swaps 2 values in an array
-function swap(arr, leftIndex, rightIndex){
-  var temp = arr[leftIndex];
-  arr[leftIndex] = arr[rightIndex];
-  arr[rightIndex] = temp;
+function swap(arr, a, b){
+  var temp = arr[a];
+  arr[a] = arr[b];
+  arr[b] = temp;
 }

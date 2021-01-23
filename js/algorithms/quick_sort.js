@@ -3,59 +3,56 @@
 var quickSortButton = document.getElementById("quick_button");
 
 //Main quicksort function
-async function quickSort(arr, start, end) {
+const quickSort = (arr, start, end, onAction) => {
   if (start >= end) {
     return;
   }
 
-  let index = await partition(arr, start, end);
+  let index = partition(arr, start, end);
 
-  await Promise.all([
-    quickSort(arr, start, index - 1), 
-    quickSort(arr, index, end)]
-  );
+  quickSort(arr, start, index - 1); 
+  quickSort(arr, index, end);
 }
 
 //Splits array using Hoare's partition scheme
-async function partition(arr, start, end) {
+function partition(arr, start, end) {
 
   let pivot = arr[Math.floor((start + end) / 2)];
+  // onAction({type: ACTIONS.PIVOT, data: [pivot]});
 
   while (start <= end) {
     while (arr[start] < pivot) {
+      //action iteration
       start++
     }
 
     while (arr[end] > pivot) {
+      //action iteration
       end--
     }
 
     if (start <= end) {
-      await quickSortSwap(arr, start, end);
+      swap(arr, start, end);
+      // onAction({ type: ACTIONS.SWAP, data: [start, end] });
       start++
       end--
     }
   }
-
   return start;
-}
-
-async function quickSortSwap(arr, a, b) {
-  await sleep(120);
-  let temp = arr[a];
-  arr[a] = arr[b];
-  arr[b] = temp;
-
 }
 
 //When button is pressed, start quick sort animation
 quickSortButton.addEventListener("click", function() {
-        var sort = quickSort(linesArr, 0, linesArr.length - 1);
-        comparisonCount = 0;
-        function anim() {
-            requestAnimationFrame(anim);
-            colors = ["#45b6fe"];
-            drawLines(linesArr, colors);
-        }
-        anim();
+  var ticks = 0;
+  quickSort(randomArray, 0, linesArr.length - 1, (action) => {
+    ticks++;
+    setTimeout(() => {
+      console.log("yo");
+      actionsMap[action.type](action, lines);
+      ctx.clearRect(0, 0, innerWidth, innerHeight);
+      drawAll(lines);
+      lines.forEach((m) => m.resetColor());
+    }, ticks * sortSpeed);
+  });
+  console.log(linesArr);
 });
