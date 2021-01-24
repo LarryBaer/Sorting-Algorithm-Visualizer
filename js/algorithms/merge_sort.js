@@ -31,7 +31,6 @@ mergeSortButton.addEventListener("click", function() {
     comparisonCount = 0;
     function anim() {
       requestAnimationFrame(anim);
-      colors = ["#45b6fe"];
       drawLines(linesArr, colors);
     }
     anim();

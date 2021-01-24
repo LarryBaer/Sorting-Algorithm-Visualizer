@@ -26,7 +26,7 @@ function createLines() {
 }
 
 createLines();
-
+var test = false;
 // Draws single line 
 function drawLine(x, y, width, height, color = BLUE_COLOR) {
   this.x = x;
@@ -43,7 +43,10 @@ function drawLine(x, y, width, height, color = BLUE_COLOR) {
   this.resetColor = () => this.setColor(BLUE_COLOR);
 
   this.setColor = (color) => {
-    if (!this.isSorted()) {
+    if(color !== BLUE_COLOR){
+      this.color = color;
+    }
+    else if(!this.isSorted()){
       this.color = color;
     }
   };
@@ -52,13 +55,13 @@ function drawLine(x, y, width, height, color = BLUE_COLOR) {
 
   this.sorted = () => (this.color = GOLD_COLOR);
 
-  this.setValue = (v, color) => {
+  this.setValue = (height, color) => {
     if (!this.isSorted()) {
-      this.height = v;
+      this.height = height;
       this.setColor(color);
     }
   };
-  this.getValue = (v) => this.height;
+  this.getValue = (height) => this.height;
 }
 
 // Get the spacing and width of lines
@@ -78,6 +81,7 @@ const lines = randomArray.map((v) => {
 function drawAll(){
   lines.forEach((line) => line.draw());
 }
+
 drawAll()
 
 // Actions that determin what to set values
@@ -85,26 +89,29 @@ const ACTIONS = {
   SORT: "SORT",
   COMPARE: "COMPARE",
   SWAP: "SWAP",
-  PIVOT: "PIVOT"
+  PIVOT: "PIVOT",
 };
 
 const actionsMap = {
-  [ACTIONS.SORT]: (action, members) => members[action.data].sorted(),
-  [ACTIONS.SWAP]: (action, members) => {
+  [ACTIONS.SORT]: (action, lines) => lines[action.data].sorted(),
+
+  [ACTIONS.SWAP]: (action, lines) => {
     const [i, j] = action.data;
-    let temp = members[i].getValue();
-    members[i].setValue(members[j].getValue(), RED_COLOR);
-    members[j].setValue(temp, RED_COLOR);
+    let temp = lines[i].getValue();
+    lines[i].setValue(lines[j].getValue(), RED_COLOR);
+    lines[j].setValue(temp, RED_COLOR);
   },
-  [ACTIONS.COMPARE]: (action, members) => {
+
+  [ACTIONS.COMPARE]: (action, lines) => {
     const [i, j] = action.data;
-    members[i].setColor(GREEN_COLOR);
-    members[j].setColor(GREEN_COLOR);
+    lines[i].setColor(GREEN_COLOR);
+    lines[j].setColor(GREEN_COLOR);
   },
-  [ACTIONS.PIVOT]:(action, members) => {
+
+  [ACTIONS.PIVOT]: (action, lines) => {
     const pivot = action.data;
-    members[pivot].setColor(GOLD_COLOR);
-  }
+    lines[pivot].setColor(GOLD_COLOR);
+  },
 };
 
 // Changes the animation speed when slider is moved

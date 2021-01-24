@@ -1,24 +1,25 @@
 var bubbleButton = document.getElementById("bubble_button");
 var comparison_count_txt = document.getElementById("comparison_count_text");
 
-const bubbleSort = (array, onAction) => {
-  for (let i = 0; i < array.length; i++) {
-    for (let j = 0; j < array.length - i - 1; j++) {
+const bubbleSort = (arr, onAction) => {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length - i - 1; j++) {
       onAction({ type: ACTIONS.COMPARE, data: [j, j + 1] });
-      if (array[j] < array[j + 1]) {
-        swap(array, j + 1, j);
+      if (arr[j] < arr[j + 1]) {
+        swap(arr, j + 1, j);
         onAction({ type: ACTIONS.SWAP, data: [j, j + 1] });
       }
     }
-    onAction({ type: ACTIONS.SORT, data: array.length - i - 1});
+    onAction({ type: ACTIONS.SORT, data: arr.length - i - 1});
   }
-  return array;
+  return arr;
 };
 
 // When button is pressed, start bubble sort animation
 bubbleButton.addEventListener("click", function() {
+  test = true;
   var ticks = 0;
-  bubbleSort(randomArray, (action) => {
+  bubbleSort(randomArray, action => {
     ticks++;
     setTimeout(() => {
       actionsMap[action.type](action, lines);
