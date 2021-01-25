@@ -9,7 +9,6 @@ var a = 1;
             if(arr[j - 1] < arr[j]){  
                 swap(arr, j, j - 1);
                 onAction({ type: ACTIONS.SWAP, data: [j, j - 1] });
-                
                 onAction({ type: ACTIONS.SORT, data: j});
                 
             }else{
@@ -31,7 +30,6 @@ insertionSortButton.addEventListener("click", function() {
         actionsMap[action.type](action, lines);
         ctx.clearRect(0, 0, innerWidth, innerHeight);
         drawAll(lines);
-        // lines.forEach((m) => m.resetColor());
       }, ticks * sortSpeed);
     });
 }); 

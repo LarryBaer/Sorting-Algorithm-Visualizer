@@ -7,12 +7,11 @@ function quickSort (arr, start, end, onAction){
   if (start >= end) {
     return;
   }
-
   let index = partition(arr, start, end, onAction);
   onAction({type: ACTIONS.PIVOT, data: [index]});
-  quickSort(arr, start, index - 1); 
-  quickSort(arr, index, end);
-  onAction({type: ACTIONS.sorted, data: [index]});
+  quickSort(arr, start, index - 1, onAction); 
+  quickSort(arr, index, end, onAction);
+  // onAction({type: ACTIONS.sorted, data: [index]});
 }
 
 // Splits array using Hoare's partition scheme

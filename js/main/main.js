@@ -10,6 +10,7 @@ const RED_COLOR = "#FF0000";
 const BLUE_COLOR = "#45b6fe";
 const GREEN_COLOR = "#00ff00";
 const GOLD_COLOR = "#FFD700";
+const PINK_COLOR = "#FF69B4";
 
 // Gets random integer to create line heights
 function randIntFromInterval(min, max) {
@@ -110,7 +111,7 @@ const actionsMap = {
 
   [ACTIONS.PIVOT]: (action, lines) => {
     const pivot = action.data;
-    lines[pivot].setColor(GOLD_COLOR);
+    lines[pivot].setColor(PINK_COLOR);
   },
 };
 
