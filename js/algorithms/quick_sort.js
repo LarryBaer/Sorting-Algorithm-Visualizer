@@ -16,17 +16,15 @@ function quickSort (arr, start, end, onAction){
 
 // Splits array using Hoare's partition scheme
 function partition(arr, start, end, onAction) {
-
   let pivot = arr[Math.floor((start + end) / 2)];
 
-
   while (start <= end) {
-    while (arr[start] < pivot) {
+    while (arr[start] > pivot) {
       start++
       onAction({ type: ACTIONS.COMPARE, data: [pivot, start] });
     }
 
-    while (arr[end] > pivot) {
+    while (arr[end] < pivot) {
       end--
       onAction({ type: ACTIONS.COMPARE, data: [pivot, end] });
     }
@@ -53,5 +51,4 @@ quickSortButton.addEventListener("click", function() {
       lines.forEach((m) => m.resetColor());
     }, ticks * sortSpeed);
   });
-  console.log(linesArr);
 });
