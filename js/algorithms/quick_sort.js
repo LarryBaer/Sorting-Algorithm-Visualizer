@@ -16,17 +16,21 @@ function quickSort (arr, start, end, onAction){
 
 // Splits array using Hoare's partition scheme
 function partition(arr, start, end, onAction) {
+  let num = Math.floor((start + end) / 2);
+  // console.log(num);
   let pivot = arr[Math.floor((start + end) / 2)];
 
+  // console.log(pivot);
   while (start <= end) {
     while (arr[start] > pivot) {
       start++
-      onAction({ type: ACTIONS.COMPARE, data: [pivot, start] });
+      onAction({ type: ACTIONS.COMPARE, data: [num, start] });
+      //possibly dont even need to compare against the pivot...?
     }
 
     while (arr[end] < pivot) {
       end--
-      onAction({ type: ACTIONS.COMPARE, data: [pivot, end] });
+      onAction({ type: ACTIONS.COMPARE, data: [num, end] });
     }
 
     if (start <= end) {

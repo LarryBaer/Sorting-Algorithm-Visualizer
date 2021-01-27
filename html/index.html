@@ -8,20 +8,20 @@
     </header>
     <body>
         <nav class="navbar" id="main_nav">
-            <h1 class = "main_title">Sorting Visualizer</h1>
             <button type="button" class="btn btn-primary btn-large" id="generate_lines">Generate New Lines</button>
             <button type="button" class="btn btn-primary btn-large" id="bubble_button">Bubble Sort</button>
             <button type="button" class="btn btn-primary btn-large" id="quick_button">Quick Sort</button>
             <button type="button" class="btn btn-primary btn-large" id="merge_button">Merge Sort</button>
             <button type="button" class="btn btn-primary btn-large" id="insertion_button">Insertion Sort</button>
+            <div class="speed_container">
+                <label>Speed</label>
+                <input type="range" min="10" max="500" step="10" id="change_sort_speed" oninput="changeSortSpeed()">
+            </div>
+            <div class="comparisons_container">
+                <h6>Comparisons:&nbsp</h6>
+                <h6 id="comparison_count_text">0</h6>
+            </div>
         </nav>
-        <label>Speed</label>
-        <input type="range" min="10" max="500" step="10" id="change_sort_speed" oninput="changeSortSpeed()">
-        <div class="comparisons_container">
-            <h6>Comparisons:&nbsp</h6>
-            <h6 id="comparison_count_text">0</h6>
-
-        </div>
         <div class="canvas_container">
           <canvas id="main_canvas"height="400" width="1000"></canvas> 
         </div>

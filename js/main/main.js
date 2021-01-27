@@ -1,16 +1,17 @@
 var mainCanvas = document.getElementById("main_canvas");
 var generateLinesBtn = document.getElementById("generate_lines");
 var ctx = mainCanvas.getContext("2d");
+
 var linesArr = [];
 var comparisonCount = 0;
 var sortSpeed = 250;
 var lineAmount = 50;
 
 const RED_COLOR = "#FF0000";
-const BLUE_COLOR = "#45b6fe";
-const GREEN_COLOR = "#00ff00";
-const GOLD_COLOR = "#FFD700";
-const PINK_COLOR = "#FF69B4";
+const DEFAULT_COLOR = "#808080";
+const COMPARISON_COLOR = "#00ff00";
+const SORTED_COLOR = "#45b6fe";
+const PIVOT_COLOR = "#FF69B4";
 
 // Gets random integer to create line heights
 function randIntFromInterval(min, max) {
@@ -27,9 +28,9 @@ function createLines() {
 }
 
 createLines();
-var test = false;
+
 // Draws single line 
-function drawLine(x, y, width, height, color = BLUE_COLOR) {
+function drawLine(x, y, width, height, color = DEFAULT_COLOR) {
   this.x = x;
   this.y = y;
   this.width = width;
@@ -41,10 +42,10 @@ function drawLine(x, y, width, height, color = BLUE_COLOR) {
     ctx.fillRect(this.x, this.y, this.width, this.height);
   };
 
-  this.resetColor = () => this.setColor(BLUE_COLOR);
+  this.resetColor = () => this.setColor(DEFAULT_COLOR);
 
   this.setColor = (color) => {
-    if(color !== BLUE_COLOR){
+    if(color !== DEFAULT_COLOR){
       this.color = color;
     }
     else if(!this.isSorted()){
@@ -52,9 +53,9 @@ function drawLine(x, y, width, height, color = BLUE_COLOR) {
     }
   };
 
-  this.isSorted = () => this.color === GOLD_COLOR;
+  this.isSorted = () => this.color === SORTED_COLOR;
 
-  this.sorted = () => (this.color = GOLD_COLOR);
+  this.sorted = () => (this.color = SORTED_COLOR);
 
   this.setValue = (height, color) => {
     if (!this.isSorted()) {
@@ -72,10 +73,10 @@ var lineWidth = spacing * 2;
 var lineDistance = 4;
 
 // Creates array of every individual line
-const lines = randomArray.map((v) => {
+const lines = randomArray.map((height) => {
    var tempLineDistance = lineDistance;
    lineDistance += 20;
-  return new drawLine(tempLineDistance, mainCanvas.height, lineWidth, v - mainCanvas.height);
+  return new drawLine(tempLineDistance, mainCanvas.height, lineWidth, height - mainCanvas.height);
 });
 
 // Draws all lines in array
@@ -105,13 +106,13 @@ const actionsMap = {
 
   [ACTIONS.COMPARE]: (action, lines) => {
     const [i, j] = action.data;
-    lines[i].setColor(GREEN_COLOR);
-    lines[j].setColor(GREEN_COLOR);
+    lines[i].setColor(COMPARISON_COLOR);
+    lines[j].setColor(COMPARISON_COLOR);
   },
 
   [ACTIONS.PIVOT]: (action, lines) => {
     const pivot = action.data;
-    lines[pivot].setColor(PINK_COLOR);
+    lines[pivot].setColor(PIVOT_COLOR);
   },
 };
 
@@ -122,9 +123,11 @@ function changeSortSpeed(){
 
 // Creates new lines with button click
 generateLinesBtn.addEventListener("click", function() {
+  console.log(randomArray);
+  ctx.clearRect(0, 0, innerWidth, innerHeight);
   createLines();
-  colors = ["#45b6fe"];
-  drawLines(linesArr, colors);
+  drawAll(lines);
+  console.log(randomArray);
 });
 
 // Swaps 2 values in an array

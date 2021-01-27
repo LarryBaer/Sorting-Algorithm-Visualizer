@@ -4,8 +4,17 @@ body{
 }
 
 .navbar{
-    padding-right:20px;
+    padding:20px;
 }
+
+#change_sorting_speed{
+    background:green;
+}
+
+.comparisons_container{
+    display:flex;
+}
+
 .canvas-container{
     height:100%;
 }
@@ -17,6 +26,4 @@ body{
     left:0;
 
 }
-.comparisons_container{
-    display:flex;
-}
+
