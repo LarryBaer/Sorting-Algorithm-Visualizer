@@ -55,13 +55,11 @@ function drawLine(x, y, width, height, color = DEFAULT_COLOR) {
 
   this.isSorted = () => this.color === SORTED_COLOR;
 
-  this.sorted = () => (this.color = SORTED_COLOR);
+  this.sorted = () => this.color = SORTED_COLOR;
 
   this.setValue = (height, color) => {
-    if (!this.isSorted()) {
       this.height = height;
       this.setColor(color);
-    }
   };
   this.getValue = (height) => this.height;
 }

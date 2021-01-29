@@ -7,25 +7,25 @@ function quickSort (arr, start, end, onAction){
   if (start >= end) {
     return;
   }
+  
   let index = partition(arr, start, end, onAction);
-  onAction({type: ACTIONS.PIVOT, data: [index]});
+
   quickSort(arr, start, index - 1, onAction); 
   quickSort(arr, index, end, onAction);
-  // onAction({type: ACTIONS.sorted, data: [index]});
+
+  onAction({ type: ACTIONS.SORT, data: index});
+  onAction({ type: ACTIONS.SORT, data: 0});
 }
 
 // Splits array using Hoare's partition scheme
 function partition(arr, start, end, onAction) {
   let num = Math.floor((start + end) / 2);
-  // console.log(num);
   let pivot = arr[Math.floor((start + end) / 2)];
 
-  // console.log(pivot);
   while (start <= end) {
     while (arr[start] > pivot) {
       start++
       onAction({ type: ACTIONS.COMPARE, data: [num, start] });
-      //possibly dont even need to compare against the pivot...?
     }
 
     while (arr[end] < pivot) {
