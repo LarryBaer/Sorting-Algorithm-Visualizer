@@ -7,7 +7,7 @@ function quickSort (arr, start, end, onAction){
   if (start >= end) {
     return;
   }
-  
+
   let index = partition(arr, start, end, onAction);
 
   quickSort(arr, start, index - 1, onAction); 
@@ -43,7 +43,7 @@ function partition(arr, start, end, onAction) {
   return start;
 }
 
-// When button is pressed, start quick sort animation
+// When button is pressed, start quick sort 
 quickSortButton.addEventListener("click", function() {
   var ticks = 0;
   quickSort(randomArray, 0, linesArr.length - 1, action => {
