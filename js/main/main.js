@@ -61,6 +61,7 @@ function drawLine(x, y, width, height, color = DEFAULT_COLOR) {
       this.height = height;
       this.setColor(color);
   };
+
   this.getValue = (height) => this.height;
 }
 
@@ -90,6 +91,7 @@ const ACTIONS = {
   COMPARE: "COMPARE",
   SWAP: "SWAP",
   PIVOT: "PIVOT",
+  ONESWAP: "ONESWAP",
 };
 
 const actionsMap = {
@@ -97,6 +99,7 @@ const actionsMap = {
 
   [ACTIONS.SWAP]: (action, lines) => {
     const [i, j] = action.data;
+    console.log(j);
     let temp = lines[i].getValue();
     lines[i].setValue(lines[j].getValue(), RED_COLOR);
     lines[j].setValue(temp, RED_COLOR);
@@ -111,6 +114,11 @@ const actionsMap = {
   [ACTIONS.PIVOT]: (action, lines) => {
     const pivot = action.data;
     lines[pivot].setColor(PIVOT_COLOR);
+  },
+
+  [ACTIONS.ONESWAP]:(action, lines) => {
+    const [i, j] = action.data;
+    lines[i].setValue(lines[j].getValue(), RED_COLOR);
   },
 };
 
