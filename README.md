@@ -1,4 +1,4 @@
 # Sorting Algorithm Visualizer
 This is an application used to visualize sorting algorithms. For this project, I used Bootstrap to efficiently style the webpage, and vanilla Javascript to create the algorithms. I ran into a couple of challenges while I was building this project. My main challenge was animating the algorithms. I had to learn about the HTML canvas property, and use it to my advantage to draw the lines in every frame. Another challenge I faced was implementing the merge sort visualization. I figured out that I needed to code the algorithm differently so that I would be able to update the frame on each iteration. Overall, I learned a lot from this project such as how efficient each algorithm is and the time complexities for them. Although some parts of the project made me feel like pulling my hair out, I'm glad I worked through the frustration and received that amazing feeling you get when you finally figure out a bug.
 
-![Sorting Visualizer](demo/sorting_visualizer.gif)
+![Sorting Visualizer](demo/Sorting_Visualizer.gif)
