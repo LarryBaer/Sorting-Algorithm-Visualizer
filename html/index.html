@@ -8,18 +8,14 @@
     </header>
     <body>
         <nav class="navbar" id="main_nav">
-            <button type="button" class="btn btn-primary btn-large" id="generate_lines">Generate New Lines</button>
-            <button type="button" class="btn btn-primary btn-large" id="bubble_button">Bubble Sort</button>
-            <button type="button" class="btn btn-primary btn-large" id="quick_button">Quick Sort</button>
-            <button type="button" class="btn btn-primary btn-large" id="merge_button">Merge Sort</button>
-            <button type="button" class="btn btn-primary btn-large" id="insertion_button">Insertion Sort</button>
+                <button type="button" class="btn btn-primary btn-large" id="generate_lines">Generate New Lines</button>
+                <button type="button" class="btn btn-primary btn-large" id="bubble_button">Bubble Sort</button>
+                <button type="button" class="btn btn-primary btn-large" id="quick_button">Quick Sort</button>
+                <button type="button" class="btn btn-primary btn-large test" id="merge_button">Merge Sort</button>
+                <button type="button" class="btn btn-primary btn-large test" id="insertion_button">Insertion Sort</button>
             <div class="speed_container">
                 <label>Speed</label>
-                <input type="range" min="10" max="500" step="10" id="change_sort_speed" oninput="changeSortSpeed()">
-            </div>
-            <div class="comparisons_container">
-                <h6>Comparisons:&nbsp</h6>
-                <h6 id="comparison_count_text">0</h6>
+                <input type="range" min="-500" max="-10" step="20" id="change_sort_speed" oninput="changeSortSpeed()">
             </div>
         </nav>
         <div class="canvas_container">
