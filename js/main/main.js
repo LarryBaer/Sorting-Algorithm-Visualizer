@@ -3,7 +3,6 @@ var generateLinesBtn = document.getElementById("generate_lines");
 var ctx = mainCanvas.getContext("2d");
 
 var linesArr = [];
-var comparisonCount = 0;
 var sortSpeed = 250;
 var lineAmount = 50;
 
@@ -66,13 +65,13 @@ function drawLine(x, y, width, height, color = DEFAULT_COLOR) {
 }
 
 // Get the spacing and width of lines
-const randomArray = linesArr;
+var randomArray = linesArr;
 var spacing = mainCanvas.width / (2 * randomArray.length + randomArray.length + 1);
 var lineWidth = spacing * 2;
 var lineDistance = 4;
 
 // Creates array of every individual line
-const lines = randomArray.map((height) => {
+var lines = randomArray.map((height) => {
    var tempLineDistance = lineDistance;
    lineDistance += 20;
   return new drawLine(tempLineDistance, mainCanvas.height, lineWidth, height - mainCanvas.height);
@@ -85,21 +84,20 @@ function drawAll(){
 
 drawAll()
 
-// Actions that determin what to set values
+// Actions that determine what to set values
 const ACTIONS = {
   SORT: "SORT",
   COMPARE: "COMPARE",
   SWAP: "SWAP",
-  PIVOT: "PIVOT",
   ONESWAP: "ONESWAP",
 };
 
+// Determines what to do based on what action is selected
 const actionsMap = {
   [ACTIONS.SORT]: (action, lines) => lines[action.data].sorted(),
 
   [ACTIONS.SWAP]: (action, lines) => {
     const [i, j] = action.data;
-    console.log(j);
     let temp = lines[i].getValue();
     lines[i].setValue(lines[j].getValue(), RED_COLOR);
     lines[j].setValue(temp, RED_COLOR);
@@ -111,11 +109,6 @@ const actionsMap = {
     lines[j].setColor(COMPARISON_COLOR);
   },
 
-  [ACTIONS.PIVOT]: (action, lines) => {
-    const pivot = action.data;
-    lines[pivot].setColor(PIVOT_COLOR);
-  },
-
   [ACTIONS.ONESWAP]:(action, lines) => {
     const [i, j] = action.data;
     lines[i].setValue(lines[j].getValue(), RED_COLOR);
@@ -124,16 +117,26 @@ const actionsMap = {
 
 // Changes the animation speed when slider is moved
 function changeSortSpeed(){
-  sortSpeed = document.getElementById("change_sort_speed").value;
+  sortSpeed = Math.abs(document.getElementById("change_sort_speed").value);
 }
 
-// Creates new lines with button click
+// Creates and draws new lines on button click
 generateLinesBtn.addEventListener("click", function() {
-  console.log(randomArray);
   ctx.clearRect(0, 0, innerWidth, innerHeight);
   createLines();
-  drawAll(lines);
-  console.log(randomArray);
+
+  randomArray = linesArr;
+  lineDistance = 4;
+  randomArray = linesArr;
+
+  lines = randomArray.map((height) => {
+    var tempLineDistance = lineDistance;
+    lineDistance += 20;
+   return new drawLine(tempLineDistance, mainCanvas.height, lineWidth, height - mainCanvas.height);
+ });
+
+  drawAll();
+
 });
 
 // Swaps 2 values in an array
