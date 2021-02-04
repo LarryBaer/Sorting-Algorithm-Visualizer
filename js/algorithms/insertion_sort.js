@@ -1,5 +1,6 @@
 var insertionSortButton = document.getElementById("insertion_button");
 
+//Insertion sort algorithm
 function insertionSort(arr, onAction){
 var a = 1;
     for(let i = 1; i < arr.length; i++){
@@ -21,7 +22,7 @@ var a = 1;
     return arr;
 }
 
-// When button is pressed, start quick sort animation
+// When button is pressed, start quick sort 
 insertionSortButton.addEventListener("click", function() {
     var ticks = 0;
     insertionSort(randomArray, action => {

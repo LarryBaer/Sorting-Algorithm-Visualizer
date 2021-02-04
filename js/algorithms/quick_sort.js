@@ -1,8 +1,6 @@
-// https://en.wikipedia.org/wiki/Quicksort
-
 var quickSortButton = document.getElementById("quick_button");
 
-// Main quicksort function
+// Quicksort algorithm
 function quickSort (arr, start, end, onAction){
   if (start >= end) {
     return;
@@ -19,18 +17,18 @@ function quickSort (arr, start, end, onAction){
 
 // Splits array using Hoare's partition scheme
 function partition(arr, start, end, onAction) {
-  let num = Math.floor((start + end) / 2);
-  let pivot = arr[Math.floor((start + end) / 2)];
+  let pivotNum = Math.floor((start + end) / 2);
+  let pivotValue = arr[Math.floor((start + end) / 2)];
 
   while (start <= end) {
-    while (arr[start] > pivot) {
+    while (arr[start] > pivotValue) {
       start++
-      onAction({ type: ACTIONS.COMPARE, data: [num, start] });
+      onAction({ type: ACTIONS.COMPARE, data: [pivotNum, start] });
     }
 
-    while (arr[end] < pivot) {
+    while (arr[end] < pivotValue) {
       end--
-      onAction({ type: ACTIONS.COMPARE, data: [num, end] });
+      onAction({ type: ACTIONS.COMPARE, data: [pivotNum, end] });
     }
 
     if (start <= end) {
@@ -52,7 +50,7 @@ quickSortButton.addEventListener("click", function() {
       actionsMap[action.type](action, lines);
       ctx.clearRect(0, 0, innerWidth, innerHeight);
       drawAll(lines);
-      lines.forEach((m) => m.resetColor());
+      lines.forEach((height) => height.resetColor());
     }, ticks * sortSpeed);
   });
 });

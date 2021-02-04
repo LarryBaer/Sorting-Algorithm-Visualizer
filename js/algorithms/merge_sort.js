@@ -27,22 +27,18 @@ function merge(arr, start, mid, end, onAction) {
   x = start;
   
   while (i < length && j < end) {
-      if (temp[i] <= arr[j]) {
+      if (temp[i] >= arr[j]) {
 
         arr[x] = temp[i];
 
-          for(var test1 = 0; test1 < temp.length; test1++) {
-            var num = -1;
+          for(var n = 0; n < temp.length; n++) {
             var target = temp[i];
-              for(var test2 = 0; test2 < arr.length; test2++){
-                if(arr[test2] == target){
-                  target = test2;
+              for(var m = 0; m < arr.length; m++){
+                if(arr[m] == target){
+                  target = m;
                 }
               }
             }
-
-            console.log("ONE: ", temp[i]);
-            console.log("TWO:", arr[target]);
 
           onAction({ type: ACTIONS.ONESWAP, data: [x, target]});
           x++;
@@ -71,10 +67,10 @@ mergeSortButton.addEventListener("click", function() {
         actionsMap[action.type](action, lines);
         ctx.clearRect(0, 0, innerWidth, innerHeight);
         drawAll(lines);
-        lines.forEach((m) => m.resetColor());
+        lines.forEach((height) => height.resetColor());
       }, ticks * sortSpeed);
     });
 
-  // mergeSort(linesArr, 0, linesArr.length);
   console.log(linesArr);
+  
   });

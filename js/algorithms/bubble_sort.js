@@ -1,6 +1,6 @@
 var bubbleButton = document.getElementById("bubble_button");
-var comparison_count_txt = document.getElementById("comparison_count_text");
 
+// Bubble sort algorithm
 const bubbleSort = (arr, onAction) => {
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < arr.length - i - 1; j++) {
@@ -15,9 +15,8 @@ const bubbleSort = (arr, onAction) => {
   return arr;
 };
 
-// When button is pressed, start bubble sort animation
+// When button is pressed, start bubble sort 
 bubbleButton.addEventListener("click", function() {
-  test = true;
   var ticks = 0;
   bubbleSort(randomArray, action => {
     ticks++;
@@ -25,7 +24,7 @@ bubbleButton.addEventListener("click", function() {
       actionsMap[action.type](action, lines);
       ctx.clearRect(0, 0, innerWidth, innerHeight);
       drawAll(lines);
-      lines.forEach((m) => m.resetColor());
+      lines.forEach((height) => height.resetColor());
     }, ticks * sortSpeed);
   });
 });
